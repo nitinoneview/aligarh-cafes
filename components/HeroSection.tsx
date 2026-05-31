@@ -26,7 +26,7 @@ export default function HeroSection() {
           Explore Local.{' '}
           <span className="text-[#D4622A]">Brew Memories.</span>
         </h1>
-        <p className="text-gray-400 text-base mb-8">
+        <p className="text-gray-400 text-sm mb-8">
           Real menu prices • Exact locations • Couple-friendly cafes
         </p>
         <div className="max-w-xl mx-auto mb-8">
@@ -48,41 +48,23 @@ export default function HeroSection() {
             </button>
           </div>
         </div>
-        <div className="className="flex flex-wrap justify-center gap-3">
-          <span
-            onClick={() => router.push('/')}
-            className="bg-[#D4622A] text-white px-4 py-2 rounded-full text-sm cursor-pointer font-medium"
-          >
+        <div className="flex flex-wrap justify-center gap-3">
+          <span onClick={() => router.push('/')} className="bg-[#D4622A] text-white px-4 py-2 rounded-full text-sm cursor-pointer font-medium">
             ☕ All Cafes
           </span>
-          <span
-            onClick={() => handleFilter('couple-friendly')}
-            className="bg-white/10 text-white px-4 py-2 rounded-full text-sm cursor-pointer hover:bg-white/20 transition"
-          >
+          <span onClick={() => handleFilter('couple-friendly')} className="bg-white/10 text-white px-4 py-2 rounded-full text-sm cursor-pointer hover:bg-white/20 transition">
             💑 Couple Friendly
           </span>
-          <span
-            onClick={() => handleFilter('student-friendly')}
-            className="bg-white/10 text-white px-4 py-2 rounded-full text-sm cursor-pointer hover:bg-white/20 transition"
-          >
+          <span onClick={() => handleFilter('student-friendly')} className="bg-white/10 text-white px-4 py-2 rounded-full text-sm cursor-pointer hover:bg-white/20 transition">
             🎓 Student Budget
           </span>
-          <span
-            onClick={() => handleFilter('rooftop-cafe')}
-            className="bg-white/10 text-white px-4 py-2 rounded-full text-sm cursor-pointer hover:bg-white/20 transition"
-          >
+          <span onClick={() => handleFilter('rooftop-cafe')} className="bg-white/10 text-white px-4 py-2 rounded-full text-sm cursor-pointer hover:bg-white/20 transition">
             🌙 Rooftop
           </span>
-          <span
-            onClick={() => handleFilter('private-cabins')}
-            className="bg-white/10 text-white px-4 py-2 rounded-full text-sm cursor-pointer hover:bg-white/20 transition"
-          >
+          <span onClick={() => handleFilter('private-cabins')} className="bg-white/10 text-white px-4 py-2 rounded-full text-sm cursor-pointer hover:bg-white/20 transition">
             🚪 Private Cabins
           </span>
-          <span
-            onClick={() => handleFilter('aesthetic-cafe')}
-            className="bg-white/10 text-white px-4 py-2 rounded-full text-sm cursor-pointer hover:bg-white/20 transition"
-          >
+          <span onClick={() => handleFilter('aesthetic-cafe')} className="bg-white/10 text-white px-4 py-2 rounded-full text-sm cursor-pointer hover:bg-white/20 transition">
             📸 Aesthetic
           </span>
         </div>
