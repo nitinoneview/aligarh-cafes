@@ -37,16 +37,17 @@ export default async function CafeDetailPage({ params }: { params: Promise<{ slu
 
       <div className="max-w-4xl mx-auto px-4 py-6">
         <div className="flex flex-wrap gap-2 mb-6">
-          {cafe.couple_friendly && <span className="bg-pink-100 text-pink-700 px-3 py-1 rounded-full text-sm font-medium">💑 Couple Friendly</span>}
-          {cafe.has_wifi && <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">📶 WiFi</span>}
-          {cafe.has_ac && <span className="bg-cyan-100 text-cyan-700 px-3 py-1 rounded-full text-sm font-medium">❄️ AC</span>}
-          {cafe.has_rooftop && <span className="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-sm font-medium">🌙 Rooftop</span>}
-          {cafe.has_live_music && <span className="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-sm font-medium">🎵 Live Music</span>}
+          {cafe.couple_friendly && <span className="bg-pink-100 text-pink-700 px-3 py-1 rounded-full text-sm font-medium">Couple Friendly</span>}
+          {cafe.has_wifi && <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">WiFi</span>}
+          {cafe.has_ac && <span className="bg-cyan-100 text-cyan-700 px-3 py-1 rounded-full text-sm font-medium">AC</span>}
+          {cafe.has_rooftop && <span className="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-sm font-medium">Rooftop</span>}
+          {cafe.has_live_music && <span className="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-sm font-medium">Live Music</span>}
+          {cafe.has_private_cabin && <span className="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm font-medium">Private Cabins</span>}
         </div>
 
         {activeOffers?.length > 0 && (
           <div className="mb-6">
-            <h2 className="text-lg font-bold text-[#1A1A1A] mb-3">🔥 Active Offers</h2>
+            <h2 className="text-lg font-bold text-[#1A1A1A] mb-3">Active Offers</h2>
             <div className="flex gap-4 overflow-x-auto pb-2">
               {activeOffers.map((offer: any) => (
                 <div key={offer.id} className="min-w-[220px] bg-[#D4622A] text-white rounded-2xl p-4">
@@ -60,14 +61,23 @@ export default async function CafeDetailPage({ params }: { params: Promise<{ slu
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
           <div className="bg-white rounded-2xl p-4 shadow-sm">
-            <h2 className="font-bold text-[#1A1A1A] mb-3">📞 Contact</h2>
-            {cafe.phone && <p className="text-[#D4622A] font-medium mb-2">{cafe.phone}</p>}
-            {cafe.instagram_handle && <p className="text-pink-500 text-sm">{"@" + cafe.instagram_handle}</p>}
+            <h2 className="font-bold text-[#1A1A1A] mb-3">Contact</h2>
+            {cafe.phone && (
+              <a href={"tel:" + cafe.phone} className="block text-[#D4622A] font-medium mb-2 hover:underline">
+                {cafe.phone}
+              </a>
+            )}
+            {cafe.instagram_handle && (
+              <a href={"https://instagram.com/" + cafe.instagram_handle} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-pink-500 text-sm hover:underline mt-1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                {"@" + cafe.instagram_handle}
+              </a>
+            )}
             <p className="text-gray-500 text-sm mt-2">{cafe.address}</p>
           </div>
 
           <div className="bg-white rounded-2xl p-4 shadow-sm">
-            <h2 className="font-bold text-[#1A1A1A] mb-3">⏰ Opening Hours</h2>
+            <h2 className="font-bold text-[#1A1A1A] mb-3">Opening Hours</h2>
             {cafe.operating_hours?.sort((a: any, b: any) => a.day_of_week - b.day_of_week).map((h: any) => (
               <div key={h.day_of_week} className="flex justify-between text-sm py-1 border-b border-gray-50">
                 <span className="text-gray-600">{DAYS[h.day_of_week]}</span>
@@ -79,17 +89,17 @@ export default async function CafeDetailPage({ params }: { params: Promise<{ slu
 
         {cafe.google_maps_url && (
           <div className="mb-6">
-            <div className="bg-white rounded-2xl p-4 shadow-sm text-center">
-              <p className="text-2xl mb-2">🗺️</p>
+            <a href={cafe.google_maps_url} target="_blank" rel="noopener noreferrer" className="block bg-white rounded-2xl p-4 shadow-sm text-center hover:shadow-md transition">
+              <p className="text-3xl mb-2">🗺️</p>
               <p className="font-bold text-[#1A1A1A]">Get Directions</p>
               <p className="text-sm text-gray-500 mt-1">{cafe.address}</p>
-            </div>
+            </a>
           </div>
         )}
 
         {otherPhotos?.length > 0 && (
           <div className="mb-6">
-            <h2 className="text-lg font-bold text-[#1A1A1A] mb-3">📸 Photos</h2>
+            <h2 className="text-lg font-bold text-[#1A1A1A] mb-3">Photos</h2>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
               {otherPhotos.map((photo: any) => (
                 <div key={photo.image_url} className="relative h-36 rounded-xl overflow-hidden">
@@ -101,7 +111,7 @@ export default async function CafeDetailPage({ params }: { params: Promise<{ slu
         )}
 
         <div>
-          <h2 className="text-lg font-bold text-[#1A1A1A] mb-4">🍽️ Menu</h2>
+          <h2 className="text-lg font-bold text-[#1A1A1A] mb-4">Menu</h2>
           {sortedCategories?.map((cat: any) => {
             const items = cafe.menu_items?.filter((item: any) => item.category_id === cat.id)
             if (!items?.length) return null
