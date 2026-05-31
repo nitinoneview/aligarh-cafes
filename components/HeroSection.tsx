@@ -48,7 +48,7 @@ export default function HeroSection() {
             </button>
           </div>
         </div>
-        <div className="flex flex-wrap justify-center gap-3">
+        <div className="flex overflow-x-auto gap-3 pb-2 justify-start px-2 no-scrollbar">
           <span
             onClick={() => router.push('/')}
             className="bg-[#D4622A] text-white px-4 py-2 rounded-full text-sm cursor-pointer font-medium"
