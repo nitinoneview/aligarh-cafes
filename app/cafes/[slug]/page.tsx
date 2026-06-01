@@ -1,5 +1,6 @@
 import { supabase } from "@/lib/supabase"
 import Image from "next/image"
+export const revalidate = 60
 
 async function getCafe(slug: string) {
   const { data } = await supabase

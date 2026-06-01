@@ -1,3 +1,4 @@
+export const revalidate = 60
 import { supabase } from '@/lib/supabase'
 import HeroSection from '@/components/HeroSection'
 import OffersSection from '@/components/OffersSection'
