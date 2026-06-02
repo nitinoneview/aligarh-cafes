@@ -28,14 +28,21 @@ export default function ListYourCafePage() {
     e.preventDefault()
     setLoading(true)
     try {
-      const { error } = await supabase.from("submissions").insert([{
-        cafe_name: form.cafe_name,
-        owner_name: form.owner_name,
-        whatsapp_number: form.whatsapp_number,
-        address: form.area + ", " + form.address,
-        instagram_handle: form.instagram_handle,
-        status: "pending",
-      }])
+	const { error } = await supabase.from("submissions").insert([{
+	  cafe_name: form.cafe_name,
+  	  owner_name: form.owner_name,
+	  whatsapp_number: form.whatsapp_number,
+	  address: form.area + ", " + form.address,
+	  area: form.area,
+	  instagram_handle: form.instagram_handle,
+	  couple_friendly: form.couple_friendly,
+	  has_rooftop: form.has_rooftop,
+	  has_wifi: form.has_wifi,
+	  opening_time: form.opening_time,
+	  closing_time: form.closing_time,
+	  message: form.message,
+	  status: "pending",
+	}])	
       if (error) throw error
       setSubmitted(true)
     } catch (err) {
