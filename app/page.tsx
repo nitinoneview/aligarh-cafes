@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     title: 'Aligarh Cafes — Explore Local. Brew Memories.',
     description:
       'Discover the best cafes in Aligarh. Find menus, prices, locations, couple-friendly cafes and special offers near you.',
-    url: 'https://aligarhcafes.vercel.app',
+    url: 'https://aligarhcafes.in',
     type: 'website',
     locale: 'en_IN',
     siteName: 'Aligarh Cafes',

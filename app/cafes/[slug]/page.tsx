@@ -57,7 +57,7 @@ const description = `${cafe.tagline || cafe.name} in Aligarh. ${featureText} Vie
     openGraph: {
       title: `${cafe.name} — Cafe in Aligarh`,
       description,
-      url: `https://aligarhcafes.vercel.app/cafes/${cafe.slug}`,
+      url: `https://aligarhcafes.in/cafes/${cafe.slug}`,
       siteName: "Aligarh Cafes",
       type: "website",
       locale: "en_IN",

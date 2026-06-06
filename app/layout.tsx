@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     "Aligarh cafes",
     "rooftop cafe Aligarh",
   ],
-  metadataBase: new URL("https://aligarhcafes.vercel.app"),
+  metadataBase: new URL("https://aligarhcafes.in"),
   openGraph: {
     title: "Aligarh Cafes — Explore Local. Brew Memories.",
     description:
