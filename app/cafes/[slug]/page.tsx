@@ -39,13 +39,12 @@ export async function generateMetadata({
   const featureText =
     features.length > 0 ? `Features: ${features.join(", ")}.` : ""
 
-  const description = `${cafe.tagline || `Visit ${cafe.name} in Aligarh`}. Located at ${cafe.address || cafe.areas?.name}. ${featureText} View full menu, photos and offers on Aligarh Cafes.`
-
+const description = `${cafe.tagline || cafe.name} in Aligarh. ${featureText} View menu, photos and location on Aligarh Cafes.`
   const coverPhoto = cafe.cafe_photos?.find((p: any) => p.is_cover)
   const coverImageUrl = coverPhoto?.image_url || null
 
   return {
-    title: `${cafe.name} — Cafe in Aligarh`,
+	title: `${cafe.name} — Best Cafe in Aligarh | Menu & Photos`,
     description,
     keywords: [
       cafe.name,
