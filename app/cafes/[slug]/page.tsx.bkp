@@ -1,7 +1,5 @@
 import { supabase } from "@/lib/supabase"
 import Image from "next/image"
-import type { Metadata } from "next"
-
 export const revalidate = 60
 
 async function getCafe(slug: string) {
@@ -11,69 +9,6 @@ async function getCafe(slug: string) {
     .eq("slug", slug)
     .single()
   return data
-}
-
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ slug: string }>
-}): Promise<Metadata> {
-  const { slug } = await params
-  const cafe = await getCafe(slug)
-
-  if (!cafe) {
-    return {
-      title: "Cafe Not Found",
-      description: "This cafe could not be found on Aligarh Cafes.",
-    }
-  }
-
-  const features = []
-  if (cafe.couple_friendly) features.push("couple friendly")
-  if (cafe.has_wifi) features.push("free WiFi")
-  if (cafe.has_ac) features.push("AC")
-  if (cafe.has_rooftop) features.push("rooftop seating")
-  if (cafe.has_live_music) features.push("live music")
-  if (cafe.has_private_cabin) features.push("private cabins")
-
-  const featureText =
-    features.length > 0 ? `Features: ${features.join(", ")}.` : ""
-
-  const description = `${cafe.tagline || `Visit ${cafe.name} in Aligarh`}. Located at ${cafe.address || cafe.areas?.name}. ${featureText} View full menu, photos and offers on Aligarh Cafes.`
-
-  const coverPhoto = cafe.cafe_photos?.find((p: any) => p.is_cover)
-  const coverImageUrl = coverPhoto?.image_url || null
-
-  return {
-    title: `${cafe.name} — Cafe in Aligarh`,
-    description,
-    keywords: [
-      cafe.name,
-      `${cafe.name} Aligarh`,
-      `${cafe.name} menu`,
-      `cafe in ${cafe.areas?.name || "Aligarh"}`,
-      "cafes in Aligarh",
-      ...(cafe.vibe_tags || []),
-    ],
-    openGraph: {
-      title: `${cafe.name} — Cafe in Aligarh`,
-      description,
-      url: `https://aligarhcafes.vercel.app/cafes/${cafe.slug}`,
-      siteName: "Aligarh Cafes",
-      type: "website",
-      locale: "en_IN",
-      ...(coverImageUrl && {
-        images: [
-          {
-            url: coverImageUrl,
-            width: 1200,
-            height: 630,
-            alt: `${cafe.name} - Cafe in Aligarh`,
-          },
-        ],
-      }),
-    },
-  }
 }
 
 const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]

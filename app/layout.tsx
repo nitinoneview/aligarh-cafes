@@ -15,9 +15,31 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Aligarh Cafes — Explore Local. Brew Memories.",
-  description: "Discover the best cafes in Aligarh with real menu prices, exact locations, and couple-friendly filters.",
-};
+  title: {
+    default: "Aligarh Cafes — Explore Local. Brew Memories.",
+    template: "%s | Aligarh Cafes",
+  },
+  description:
+    "Discover the best cafes in Aligarh. Find menus, prices, locations, couple-friendly cafes and special offers near you.",
+  keywords: [
+    "cafes in Aligarh",
+    "best cafe Aligarh",
+    "couple friendly cafe Aligarh",
+    "cafe near me Aligarh",
+    "Aligarh cafes",
+    "rooftop cafe Aligarh",
+  ],
+  metadataBase: new URL("https://aligarhcafes.vercel.app"),
+  openGraph: {
+    title: "Aligarh Cafes — Explore Local. Brew Memories.",
+    description:
+      "Discover the best cafes in Aligarh. Find menus, prices, locations, couple-friendly cafes and special offers.",
+    url: "https://aligarhcafes.vercel.app",
+    siteName: "Aligarh Cafes",
+    locale: "en_IN",
+    type: "website",
+  },
+}
 
 export default function RootLayout({
   children,

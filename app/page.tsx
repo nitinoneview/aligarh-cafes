@@ -1,4 +1,27 @@
 export const revalidate = 60
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Aligarh Cafes — Explore Local. Brew Memories.',
+  description:
+    'Discover the best cafes in Aligarh. Find menus, prices, locations, couple-friendly cafes and special offers near you.',
+  keywords: [
+    'cafes in Aligarh',
+    'best cafe Aligarh',
+    'couple friendly cafe Aligarh',
+    'cafe near me Aligarh',
+    'rooftop cafe Aligarh',
+  ],
+  openGraph: {
+    title: 'Aligarh Cafes — Explore Local. Brew Memories.',
+    description:
+      'Discover the best cafes in Aligarh. Find menus, prices, locations, couple-friendly cafes and special offers near you.',
+    url: 'https://aligarhcafes.vercel.app',
+    type: 'website',
+    locale: 'en_IN',
+    siteName: 'Aligarh Cafes',
+  },
+}
 import { supabase } from '@/lib/supabase'
 import HeroSection from '@/components/HeroSection'
 import OffersSection from '@/components/OffersSection'
