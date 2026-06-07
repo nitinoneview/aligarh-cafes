@@ -1,5 +1,4 @@
 import { supabaseAdmin } from '@/lib/supabase-admin'
-import Link from 'next/link'
 
 async function getOffers() {
   const { data } = await supabaseAdmin
@@ -22,9 +21,10 @@ export default async function AdminOffersPage() {
         
           href="https://supabase.com/dashboard/project/xebviarpzsddjcbmzkbu/editor"
           target="_blank"
+          rel="noopener noreferrer"
           className="bg-[#D4622A] text-white px-4 py-2 rounded-xl text-sm hover:bg-[#c5571f] transition"
         >
-          + Add Offer in Supabase
+          Add Offer in Supabase
         </a>
       </div>
 
@@ -35,7 +35,7 @@ export default async function AdminOffersPage() {
         </div>
       ) : (
         <div className="space-y-4">
-          {offers.map((offer) => (
+          {offers.map((offer: any) => (
             <div key={offer.id} className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 flex items-center justify-between">
               <div>
                 <div className="flex items-center gap-2 mb-1">
