@@ -39,12 +39,13 @@ export async function generateMetadata({
   const featureText =
     features.length > 0 ? `Features: ${features.join(", ")}.` : ""
 
-const description = `${cafe.tagline || cafe.name} in Aligarh. ${featureText} View menu, photos and location on Aligarh Cafes.`
+  const description = `${cafe.tagline || cafe.name} in Aligarh. ${featureText} View menu, photos and location on Aligarh Cafes.`
+
   const coverPhoto = cafe.cafe_photos?.find((p: any) => p.is_cover)
   const coverImageUrl = coverPhoto?.image_url || null
 
   return {
-	title: `${cafe.name} — Best Cafe in Aligarh | Menu & Photos`,
+    title: `${cafe.name} — Best Cafe in Aligarh | Menu & Photos`,
     description,
     keywords: [
       cafe.name,
@@ -91,7 +92,7 @@ export default async function CafeDetailPage({ params }: { params: Promise<{ slu
     <main className="min-h-screen bg-[#F5F3EF]">
       <div className="relative h-64 md:h-80 bg-gray-200">
         {coverPhoto && (
-          <Image src={coverPhoto.image_url} alt={cafe.name} fill sizes="100vw" className="object-cover" />
+          <Image src={coverPhoto.image_url} alt={cafe.name} fill sizes="100vw" className="object-cover" priority />
         )}
         <div className="absolute inset-0 bg-black/40" />
         <div className="absolute bottom-6 left-6 text-white">
