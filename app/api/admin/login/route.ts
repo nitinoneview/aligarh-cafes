@@ -1,19 +1,32 @@
 import { NextRequest, NextResponse } from 'next/server'
 
 export async function POST(req: NextRequest) {
-  const { password } = await req.json()
+  try {
+    const { password } = await req.json()
+    const adminPassword = process.env.ADMIN_PASSWORD
 
-  if (password !== process.env.ADMIN_PASSWORD) {
-    return NextResponse.json({ error: 'Invalid password' }, { status: 401 })
+    console.log('Login attempt — password match:', password === adminPassword)
+
+    if (!adminPassword) {
+      return NextResponse.json({ error: 'Admin password not configured' }, { status: 500 })
+    }
+
+    if (password !== adminPassword) {
+      return NextResponse.json({ error: 'Invalid password' }, { status: 401 })
+    }
+
+    const response = NextResponse.json({ success: true })
+    response.cookies.set('admin_token', adminPassword, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      maxAge: 60 * 60 * 24 * 7,
+      path: '/',
+      sameSite: 'lax',
+    })
+
+    return response
+  } catch (err) {
+    console.error('Login error:', err)
+    return NextResponse.json({ error: 'Server error' }, { status: 500 })
   }
-
-  const response = NextResponse.json({ success: true })
-  response.cookies.set('admin_token', process.env.ADMIN_PASSWORD!, {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    maxAge: 60 * 60 * 24 * 7, // 7 days
-    path: '/',
-  })
-
-  return response
 }
