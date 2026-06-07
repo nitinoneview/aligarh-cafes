@@ -3,14 +3,34 @@ import Image from "next/image"
 import type { Metadata } from "next"
 
 export const revalidate = 60
-
 async function getCafe(slug: string) {
   const { data } = await supabase
     .from("cafes")
-    .select("*, areas(name), cafe_photos(image_url, is_cover, sort_order), menu_categories(id, name, sort_order), menu_items(id, name, description, price_regular, price_medium, price_large, is_veg, category_id), offers(title, discount_text, valid_until, is_active), operating_hours(day_of_week, open_time, close_time, is_closed)")
+    .select(`
+      *,
+      areas(name),
+      cafe_photos(image_url, is_cover, sort_order),
+      offers(title, discount_text, valid_until, is_active),
+      operating_hours(day_of_week, open_time, close_time, is_closed)
+    `)
     .eq("slug", slug)
     .single()
   return data
+}
+
+async function getCafeMenu(cafeId: string) {
+  const [{ data: categories }, { data: items }] = await Promise.all([
+    supabase
+      .from("menu_categories")
+      .select("id, name, sort_order")
+      .eq("cafe_id", cafeId)
+      .order("sort_order"),
+    supabase
+      .from("menu_items")
+      .select("id, name, description, price_regular, price_medium, price_large, is_veg, category_id")
+      .eq("cafe_id", cafeId)
+  ])
+  return { categories: categories || [], items: items || [] }
 }
 
 export async function generateMetadata({
@@ -78,16 +98,17 @@ export async function generateMetadata({
 
 const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
 
-export default async function CafeDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  export default async function CafeDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
   const cafe = await getCafe(slug)
   if (!cafe) return <div className="p-8 text-center">Cafe not found</div>
 
+  const menu = await getCafeMenu(cafe.id)
+
   const coverPhoto = cafe.cafe_photos?.find((p: any) => p.is_cover)
   const otherPhotos = cafe.cafe_photos?.filter((p: any) => !p.is_cover)
   const activeOffers = cafe.offers?.filter((o: any) => o.is_active)
-  const sortedCategories = cafe.menu_categories?.sort((a: any, b: any) => a.sort_order - b.sort_order)
-
+  const sortedCategories = menu.categories?.sort((a: any, b: any) => a.sort_order - b.sort_order) 
   return (
     <main className="min-h-screen bg-[#F5F3EF]">
       <div className="relative h-64 md:h-80 bg-gray-200">
@@ -179,7 +200,7 @@ export default async function CafeDetailPage({ params }: { params: Promise<{ slu
         <div>
           <h2 className="text-lg font-bold text-[#1A1A1A] mb-4">Menu</h2>
           {sortedCategories?.map((cat: any) => {
-            const items = cafe.menu_items?.filter((item: any) => item.category_id === cat.id)
+           const items = menu.items?.filter((item: any) => item.category_id === cat.id)
             if (!items?.length) return null
             return (
               <div key={cat.id} className="mb-6">
