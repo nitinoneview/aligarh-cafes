@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ☕ Aligarh Cafes
 
-## Getting Started
+**Aligarh Cafes** is a hyperlocal cafe discovery platform built for the city of Aligarh, Uttar Pradesh, India.  
+Live at 👉 [aligarhcafes.in](https://aligarhcafes.in)
 
-First, run the development server:
+## 🌟 About the Project
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Finding a good cafe in Aligarh used to mean asking around or scrolling through generic apps.  
+**Aligarh Cafes** solves that — it's a dedicated platform where locals can explore cafes by area,  
+discover active deals and offers, and get real information about each cafe.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Built as a full-stack web application by a solo developer, this project is production-deployed  
+and actively maintained.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🚀 Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- 📍 **Browse by Area** — Filter cafes by locality (Civil Lines, Marris Road, etc.)
+- 🏷️ **Active Offers** — See current deals and discounts from cafes
+- 🔍 **Cafe Detail Pages** — Individual pages for each cafe with photos, info, and features
+- 📧 **Email Notifications** — Automated emails via Resend API when new cafes are added
+- 🛡️ **Admin Panel** — Password-protected dashboard to manage cafes and content
+- ⚡ **Fast & SEO-Optimized** — Meta tags, Open Graph, Google Search Console verified
+- 📱 **Responsive Design** — Works on mobile and desktop
 
-## Learn More
+## 🛠️ Tech Stack
 
-To learn more about Next.js, take a look at the following resources:
+| Layer | Technology |
+|-------|-----------|
+| Frontend | Next.js 14 (App Router), TypeScript, Tailwind CSS |
+| Backend | Next.js API Routes, Supabase (PostgreSQL) |
+| Auth | Middleware-based admin authentication |
+| Email | Resend API + Supabase Webhooks |
+| Hosting | Vercel |
+| Domain | GoDaddy (custom domain) |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📁 Project Highlights
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Uses **Next.js App Router** with Route Groups to separate public and admin layouts
+- **ISR (Incremental Static Regeneration)** with `revalidate = 60` for performance
+- **Supabase webhooks** trigger email alerts on database changes
+- **Google Search Console** verified via GoDaddy DNS for SEO indexing
 
-## Deploy on Vercel
+## 👨‍💻 Author
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Built by **Nitin** — Production Support Engineer & Full-Stack Learner  
+📌 Aligarh, Uttar Pradesh, India
