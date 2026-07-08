@@ -1,0 +1,8 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "in.aligarhcafes.app",
+    "sha256_cert_fingerprints": ["C3:62:13:10:1B:98:47:97:98:D5:B3:83:D3:73:87:67:E5:10:3A:B2:3E:54:B7:93:30:30:27:34:6D:7F:82:2F"]
+  }
+}]
