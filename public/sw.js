@@ -1,9 +1,15 @@
-// Simple Service Worker for Aligarh Cafes PWA
-// Yeh file basic offline support deti hai aur app ko "installable" banati hai
+// Service Worker for Aligarh Cafes PWA
+// Ab isme custom offline fallback page bhi hai
 
-const CACHE_NAME = 'aligarh-cafes-v1';
+const CACHE_NAME = 'aligarh-cafes-v2';
+const OFFLINE_URL = '/offline';
 
 self.addEventListener('install', (event) => {
+  event.waitUntil(
+    caches.open(CACHE_NAME).then((cache) => {
+      return cache.add(OFFLINE_URL);
+    })
+  );
   self.skipWaiting();
 });
 
@@ -22,6 +28,15 @@ self.addEventListener('activate', (event) => {
 
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') {
+    return;
+  }
+
+  if (event.request.mode === 'navigate') {
+    event.respondWith(
+      fetch(event.request).catch(() => {
+        return caches.match(OFFLINE_URL);
+      })
+    );
     return;
   }
 

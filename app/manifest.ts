@@ -7,7 +7,7 @@ export default function manifest(): MetadataRoute.Manifest {
     description: 'Discover the best cafes in Aligarh - browse by area, filter by features, and find offers.',
     start_url: '/',
     display: 'standalone',
-    background_color: '#ffffff',
+    background_color: '#000000',
     theme_color: '#000000',
     orientation: 'portrait',
     icons: [
