@@ -31,6 +31,15 @@ export const metadata: Metadata = {
     "cafe near me Aligarh",
     "Aligarh cafes",
     "rooftop cafe Aligarh",
+    "top 10 cafes in Aligarh",
+    "best cafes in Aligarh 2026",
+    "cafe with wifi Aligarh",
+    "cafes near AMU Aligarh",
+    "aesthetic cafe Aligarh",
+    "family cafe Aligarh",
+    "budget cafe Aligarh",
+    "new cafe in Aligarh",
+    "Aligarh cafe list",
   ],
   metadataBase: new URL("https://aligarhcafes.in"),
   openGraph: {
@@ -44,6 +53,28 @@ export const metadata: Metadata = {
   },
 }
 
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Aligarh Cafes",
+  url: "https://aligarhcafes.in",
+  logo: "https://aligarhcafes.in/logo.png",
+  description:
+    "Discover the best cafes in Aligarh. Find menus, prices, locations, couple-friendly cafes and special offers near you.",
+}
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Aligarh Cafes",
+  url: "https://aligarhcafes.in",
+  potentialAction: {
+    "@type": "SearchAction",
+    target: "https://aligarhcafes.in/cafes?search={search_term_string}",
+    "query-input": "required name=search_term_string",
+  },
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -54,6 +85,16 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+        />
+      </head>
       <body className="min-h-full flex flex-col">
         <IntroSplash />
         <RegisterSW />
