@@ -1,3 +1,5 @@
+"use client"
+
 export default function OfflinePage() {
   return (
     <div
@@ -31,7 +33,7 @@ export default function OfflinePage() {
           marginBottom: '12px',
         }}
       >
-        You\'re Offline
+        You&apos;re Offline
       </h1>
       <p
         style={{
@@ -42,7 +44,7 @@ export default function OfflinePage() {
           marginBottom: '28px',
         }}
       >
-        Looks like there\'s no internet connection. Please check your network
+        Looks like there&apos;s no internet connection. Please check your network
         and try again.
       </p>
       <button
