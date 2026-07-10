@@ -1,7 +1,6 @@
 // Service Worker for Aligarh Cafes PWA
-// Ab isme custom offline fallback page bhi hai
-
-const CACHE_NAME = 'aligarh-cafes-v2';
+// Sirf offline fallback ke liye - baaki sab fetches normal browser handle karta hai
+const CACHE_NAME = 'aligarh-cafes-v3';
 const OFFLINE_URL = '/offline';
 
 self.addEventListener('install', (event) => {
@@ -27,30 +26,13 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
-  if (event.request.method !== 'GET') {
-    return;
-  }
-
-  if (event.request.mode === 'navigate') {
-    event.respondWith(
-      fetch(event.request).catch(() => {
-        return caches.match(OFFLINE_URL);
-      })
-    );
+  if (event.request.mode !== 'navigate') {
     return;
   }
 
   event.respondWith(
-    fetch(event.request)
-      .then((response) => {
-        const responseClone = response.clone();
-        caches.open(CACHE_NAME).then((cache) => {
-          cache.put(event.request, responseClone);
-        });
-        return response;
-      })
-      .catch(() => {
-        return caches.match(event.request);
-      })
+    fetch(event.request).catch(() => {
+      return caches.match(OFFLINE_URL);
+    })
   );
 });
