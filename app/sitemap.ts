@@ -26,6 +26,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const { data: cafes } = await supabase
     .from('cafes')
     .select('slug')
+    .eq('is_published', true)
 
   const cafePages: MetadataRoute.Sitemap = (cafes || []).map((cafe) => ({
     url: `https://aligarhcafes.in/cafes/${cafe.slug}`,

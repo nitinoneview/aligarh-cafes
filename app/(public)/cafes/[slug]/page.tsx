@@ -1,6 +1,7 @@
 import { supabase } from "@/lib/supabase"
 import Image from "next/image"
 import type { Metadata } from "next"
+import MenuAccordion from "@/components/MenuAccordion"
 
 export const revalidate = 60
 async function getCafe(slug: string) {
@@ -199,33 +200,7 @@ const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
 
         <div>
           <h2 className="text-lg font-bold text-[#1A1A1A] mb-4">Menu</h2>
-          {sortedCategories?.map((cat: any) => {
-           const items = menu.items?.filter((item: any) => item.category_id === cat.id)
-            if (!items?.length) return null
-            return (
-              <div key={cat.id} className="mb-6">
-                <h3 className="font-bold text-[#D4622A] text-base mb-3 border-b border-orange-100 pb-2">{cat.name}</h3>
-                <div className="bg-white rounded-2xl shadow-sm overflow-hidden">
-                  {items.map((item: any, index: number) => (
-                    <div key={item.id} className={"flex justify-between items-start px-4 py-3 " + (index !== items.length - 1 ? "border-b border-gray-50" : "")}>
-                      <div className="flex items-start gap-2 flex-1">
-                        <span className="text-xs mt-1">{item.is_veg ? "🟢" : "🔴"}</span>
-                        <div>
-                          <p className="text-sm font-medium text-[#1A1A1A]">{item.name}</p>
-                          {item.description && <p className="text-xs text-gray-400 mt-0.5">{item.description}</p>}
-                        </div>
-                      </div>
-                      <div className="text-right ml-4">
-                        {item.price_regular && <p className="text-sm font-bold text-[#1A1A1A]">{"₹" + item.price_regular}</p>}
-                        {item.price_medium && <p className="text-xs text-gray-500">{"M: ₹" + item.price_medium}</p>}
-                        {item.price_large && <p className="text-xs text-gray-500">{"L: ₹" + item.price_large}</p>}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )
-          })}
+          <MenuAccordion categories={sortedCategories || []} items={menu.items || []} />
         </div>
       </div>
     </main>
