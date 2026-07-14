@@ -3,6 +3,7 @@ import Image from "next/image"
 import Link from "next/link"
 import type { Metadata } from "next"
 import MenuAccordion from "@/components/MenuAccordion"
+import PhotoGallery from "@/components/PhotoGallery"
 
 export const revalidate = 60
 async function getCafe(slug: string) {
@@ -196,13 +197,7 @@ const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
         {otherPhotos?.length > 0 && (
           <div className="mb-6">
             <h2 className="text-lg font-bold text-[#1A1A1A] mb-3">Photos</h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-              {otherPhotos.map((photo: any) => (
-                <div key={photo.image_url} className="relative h-36 rounded-xl overflow-hidden">
-                  <Image src={photo.image_url} alt={cafe.name} fill sizes="33vw" className="object-cover" />
-                </div>
-              ))}
-            </div>
+            <PhotoGallery photos={otherPhotos} cafeName={cafe.name} />
           </div>
         )}
 
