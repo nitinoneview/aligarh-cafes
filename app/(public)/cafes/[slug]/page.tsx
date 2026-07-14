@@ -1,5 +1,6 @@
 import { supabase } from "@/lib/supabase"
 import Image from "next/image"
+import Link from "next/link"
 import type { Metadata } from "next"
 import MenuAccordion from "@/components/MenuAccordion"
 
@@ -113,6 +114,13 @@ const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
   return (
     <main className="min-h-screen bg-[#F5F3EF]">
       <div className="relative h-64 md:h-80 bg-gray-200">
+        <Link
+          href="/cafes"
+          className="absolute top-3 left-3 z-10 flex items-center gap-1.5 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-sm hover:bg-white transition-colors"
+        >
+          <i className="ti ti-arrow-left text-base text-[#1A1A1A]" aria-hidden="true" />
+          <span className="text-xs font-medium text-[#1A1A1A]">Back</span>
+        </Link>
         {coverPhoto && (
           <Image src={coverPhoto.image_url} alt={cafe.name} fill sizes="100vw" className="object-cover" priority />
         )}
