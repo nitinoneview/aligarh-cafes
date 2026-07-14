@@ -27,11 +27,6 @@ export default function CafeCard({ cafe }: { cafe: any }) {
               🔥 Offer
             </span>
           )}
-          {cafe.couple_friendly && (
-            <span className="absolute top-3 right-3 bg-white text-xs px-3 py-1 rounded-full font-medium shadow">
-              💑 
-            </span>
-          )}
         </div>
         <div className="p-4">
           <div className="flex justify-between items-start mb-1">
