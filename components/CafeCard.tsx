@@ -8,14 +8,17 @@ export default function CafeCard({ cafe }: { cafe: any }) {
 
   return (
     <Link href={`/cafes/${cafe.slug}`}>
-      <div className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-md transition-all cursor-pointer">
-        <div className="relative h-48 bg-gray-100">
+      <div className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-md transition-all cursor-pointer w-full">
+        <div className="relative h-44 sm:h-48 md:h-52 bg-gray-100">
           {coverPhoto ? (
             <Image
               src={coverPhoto.image_url}
               alt={cafe.name}
               fill
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              quality={75}
               className="object-cover"
+              priority={false}
             />
           ) : (
             <div className="w-full h-full flex items-center justify-center text-gray-400 text-4xl">

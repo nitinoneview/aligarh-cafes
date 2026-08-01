@@ -1,29 +1,80 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+  --color-primary: #D4622A;
+  --color-primary-dark: #c5571f;
+  --color-accent: #0F6E56;
+  --color-neutral-bg: #F5F3EF;
+  --color-surface: #FFFFFF;
+  --color-text: #1A1A1A;
+  --color-muted: #6B7280;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Primary app font (used as fallback) */
+  --font-sans: Inter, Arial, Helvetica, sans-serif;
+
+  /* Provide variables expected by app/layout.tsx which uses next/font/google Geist variables */
+  --font-geist-sans: Inter, Arial, Helvetica, sans-serif;
+  --font-geist-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', 'Courier New', monospace;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --color-neutral-bg: #0a0a0a;
+    --color-text: #ededed;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+html, body {
+  font-family: var(--font-sans);
+  background: var(--color-neutral-bg);
+  color: var(--color-text);
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden; /* prevent horizontal scrolling */
 }
+
+/* Touch friendly adjustments */
+.touch-friendly {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+/* Ensure inputs and buttons are comfortable on touch */
+input, button, select, textarea {
+  touch-action: manipulation;
+}
+
+/* Utility container to keep consistent spacing */
+.container {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* Small responsive helpers */
+@media (max-width: 640px) {
+  .container { padding-left: 0.75rem; padding-right: 0.75rem; }
+}
+
+/* Prevent images from causing horizontal overflow */
+img, .bg-image, picture, video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ensure buttons have consistent tap area */
+.btn, .touch-friendly { border-radius: 0.5rem; }
 
 .no-scrollbar::-webkit-scrollbar {
   display: none;
